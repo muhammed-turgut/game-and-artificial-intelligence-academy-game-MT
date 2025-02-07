@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public float speedx = 0.0f;
-    public float speedxx = 0.0f;
-
+    public float speed = 0.0f;
     private Rigidbody2D r2D;
     private Animator _animator;
-    
+    private Vector3 charPos;
+    [SerializeField] private GameObject _camera;
+
 
     // Bu fonksiyon oyun �al��t��� ilk an �al��an bir fonksiyon.
     void Start()
     {
         r2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        charPos = transform.position;
+    }
+    private void FixedUpdate()
+    {
+       
     }
 
     // Bu fonksiyon oyun �al��t��� her an ve her karede �a�r�l�r.
@@ -23,38 +28,28 @@ public class CharacterController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            speedx = 1.0f;
-            Debug.Log("H�z 1.0f");
+            speed = 5.0f;
+            Debug.Log("Hiz 1.0f");
         }
         else
         {
-            speedx = 0.0f;
-            Debug.Log("H�z 0.0f");
-        }
-        _animator.SetFloat("speed", speedx);
-        r2D.velocity = new Vector2(speedx, 0f);
-
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            speedxx = 1.0f;
-            Debug.Log("H�z 0.1f");
-
-           
-        }
-        else
-        {
-            speedxx = 0.0f;
-            Debug.Log("H�z 0.0f");
+            speed = 0.0f;
+            Debug.Log("Hiz 0.0f");
         }
 
-        _animator.SetFloat("speed", speedxx);
-        r2D.velocity = new Vector2(-speedxx, 0f);
+
+        charPos = new Vector3(charPos.x + (speed * Time.deltaTime), charPos.y);//delta time iki fram arasnındaki zaman
+        transform.position = charPos;//burda yeni hesaplatığımız fizik hesabını kullanmasını sağladık
 
 
-
-
-
+        _animator.SetFloat("speed", speed);
+       
 
     }
+
+    private void LateUpdate()
+    {
+        _camera.transform.position = new Vector3(charPos.x, charPos.y, charPos.z - 1.0f); //kamera takip fonksiyonu.
+    }
 }
+
