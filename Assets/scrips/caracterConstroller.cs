@@ -28,7 +28,7 @@ public class CharacterController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            speed = 5.0f;
+            speed = 8.0f;
             Debug.Log("Hiz 1.0f");
         }
         else

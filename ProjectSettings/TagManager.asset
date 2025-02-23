@@ -3,16 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Engel
+  - zemin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bacground
   - Water
   - UI
   - foreground
-  - 
+  - Midground
   - 
   - 
   - 
@@ -41,7 +43,13 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer 1
+  - name: Bacground
+    uniqueID: 3504898723
+    locked: 0
+  - name: Mindground
+    uniqueID: 1337567369
+    locked: 0
+  - name: foreground
     uniqueID: 2086079543
     locked: 0
   m_RenderingLayers:
